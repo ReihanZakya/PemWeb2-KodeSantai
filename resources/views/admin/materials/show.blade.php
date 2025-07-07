@@ -7,12 +7,12 @@
     <hr />
     <div class="row">
         <div class="col mb-3">
-            <label class="form-label">Category</label>
-            <input type="text" name="category" class="form-control" placeholder="Category" value="{{ $module->category->name }}" readonly>
+            <label class="form-label">Title</label>
+            <input type="text" name="category" class="form-control" placeholder="Category" value="{{ $module->category }}" readonly>
         </div>
         <div class="col mb-3">
-            <label class="form-label">Module Title</label>
-            <input type="text" name="module" class="form-control" placeholder="Module" value="{{ $module->title }}" readonly>
+            <label class="form-label">Price</label>
+            <input type="text" name="module" class="form-control" placeholder="Module" value="{{ $module->module }}" readonly>
         </div>
     </div>
     <div class="row">

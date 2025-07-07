@@ -25,6 +25,12 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link"  href="{{ route('materials') }}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Materials</span></a>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link" href="/admin/profile">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Profile</span></a>

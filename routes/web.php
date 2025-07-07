@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ModuleController;
 use App\Models\Module;
 
@@ -51,6 +52,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('edit/{id}', 'edit')->name('modules.edit');
         Route::put('edit/{id}', 'update')->name('modules.update');
         Route::delete('destroy/{id}', 'destroy')->name('modules.destroy');
+    });
+
+    Route::controller(MaterialController::class)->prefix('materials')->group(function () {
+        Route::get('', 'index')->name('materials');
     });
 
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');

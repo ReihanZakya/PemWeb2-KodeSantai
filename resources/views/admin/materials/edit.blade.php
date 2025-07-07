@@ -11,17 +11,11 @@
         <div class="row">
             <div class="col mb-3">
                 <label class="form-label">Category</label>
-                <select name="category_id" class="form-control">
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ $module->category_id == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <input type="text" name="category" class="form-control" placeholder="Category" value="{{ $module->category }}" >
             </div>
             <div class="col mb-3">
-                <label class="form-label">Module Title</label>
-                <input type="text" name="title" class="form-control" placeholder="Module Title" value="{{ $module->title }}">
+                <label class="form-label">Module</label>
+                <input type="text" name="module" class="form-control" placeholder="Module" value="{{ $module->module }}" >
             </div>
         </div>
         <div class="row">
@@ -30,5 +24,4 @@
             </div>
         </div>
     </form>
-    
 @endsection
