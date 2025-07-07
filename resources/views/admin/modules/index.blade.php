@@ -42,8 +42,8 @@
                     {{-- {{ ($item->category->name) }} --}}
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->category }}</td>
-                        <td>{{ $item->module }}</td>
+                        <td>{{ $item->category->name }}</td>
+                        <td>{{ $item->title }}</td>
                         <td>{{ $item->created_at }}</td>
                         <td>{{ $item->updated_at }}</td>
                         <td class="d-flex">
@@ -64,6 +64,7 @@
         </div>
     </div>
 </div>
+
 
 @endsection
 

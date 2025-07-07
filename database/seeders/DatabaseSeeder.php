@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Module;
+use App\Models\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,33 +16,40 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        // \App\Models\User::factory(10)->create();
+{
+    // Buat Admin
+    User::create([
+        'name' => 'Admin1',
+        'role' => 'admin',
+        'email' => 'admin1@gmail.com',
+        'password' => bcrypt('admin12345')
+    ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+    // Buat Kategori (Frontend, Backend, Fullstack)
+    $frontend = Category::create(['name' => 'Frontend']);
+    $backend = Category::create(['name' => 'Backend']);
+    $fullstack = Category::create(['name' => 'Fullstack']);
 
-        User::create([
-            'name' => 'Admin1',
-            'email' => 'admin1@gmail.com',
-            'password' => bcrypt('admin12345')
-        ]);
+    // Buat Modul sesuai kategori
+    Module::create([
+        'category_id' => $frontend->id,
+        'title' => 'JavaScript',
+        'description' => 'Belajar dasar JavaScript untuk frontend'
+    ]);
 
-        Module::create([
-            'category' => 'Frontend',
-            'module' => 'Javascript'
-        ]);
-        Module::create([
-            'category' => 'Fullstack',
-            'module' => 'PHP'
-        ]);
-        Module::create([
-            'category' => 'Backend',
-            'module' => 'Java'
-        ]);
+    Module::create([
+        'category_id' => $fullstack->id,
+        'title' => 'PHP',
+        'description' => 'Dasar PHP untuk pengembangan fullstack'
+    ]);
 
-        Module::factory(21)->create();
-    }
+    Module::create([
+        'category_id' => $backend->id,
+        'title' => 'Java',
+        'description' => 'OOP dengan Java untuk backend service'
+    ]);
+
+    // Tambahkan 21 modul dummy menggunakan factory
+    Module::factory(21)->create();
+}
 }

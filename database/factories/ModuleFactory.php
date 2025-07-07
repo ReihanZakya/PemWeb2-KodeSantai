@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Category;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Module>
@@ -17,8 +18,9 @@ class ModuleFactory extends Factory
     public function definition()
     {
         return [
-            'category' => $this->faker->randomElement(['Frontend', 'Backend', 'Fullstack']),
-            'module' => $this->faker->word()
+            'category_id' => Category::inRandomOrder()->first()?->id ?? Category::factory(),
+            'title' => $this->faker->word(),
+            'description' => $this->faker->sentence()
         ];
     }
 }
