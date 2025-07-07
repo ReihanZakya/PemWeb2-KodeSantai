@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -26,7 +27,8 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        $modules = Module::all();
+        return view('admin.materials.create', compact('modules'));
     }
 
     /**
@@ -37,7 +39,16 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'module_id' => 'required|exists:modules,id',
+            'title' => 'required|string|max:255',
+            'content' => 'required',
+            'video_url' => 'nullable|url'
+        ]);
+    
+        Material::create($request->only(['module_id', 'title', 'content', 'video_url']));
+    
+        return redirect()->route('materials')->with('success', 'Material added successfully');    
     }
 
     /**
@@ -59,7 +70,9 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        $modules = Module::all();
+        return view('admin.materials.edit', compact('material', 'modules'));
     }
 
     /**
@@ -71,7 +84,17 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'module_id' => 'required|exists:modules,id',
+            'title' => 'required|string|max:255',
+            'content' => 'required',
+            'video_url' => 'nullable|url'
+        ]);
+    
+        $material = Material::findOrFail($id);
+        $material->update($request->only(['module_id', 'title', 'content', 'video_url']));
+    
+        return redirect()->route('materials')->with('success', 'Material updated successfully');
     }
 
     /**
@@ -82,6 +105,9 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        $material->delete();
+    
+        return redirect()->route('materials')->with('success', 'Material deleted successfully');
     }
 }

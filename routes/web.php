@@ -56,6 +56,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::controller(MaterialController::class)->prefix('materials')->group(function () {
         Route::get('', 'index')->name('materials');
+        Route::get('create', 'create')->name('materials.create');
+        Route::post('store', 'store')->name('materials.store');
+        Route::get('show/{id}', 'show')->name('materials.show');
+        Route::get('edit/{id}', 'edit')->name('materials.edit');
+        Route::put('edit/{id}', 'update')->name('materials.update');
+        Route::delete('destroy/{id}', 'destroy')->name('materials.destroy');
     });
 
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');

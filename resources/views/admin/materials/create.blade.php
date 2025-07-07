@@ -5,25 +5,29 @@
 @section('contents')
     <h1 class="mb-4">Add Modules</h1>
     <hr />
-    <form action="{{ route('modules.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('materials.store') }}" method="POST">
         @csrf
-        <div class="row mb-3">
-            <div class="col-md-6 mb-2 mb-md-0">
-                <select class="form-control" name="category" id="category">
-                    <option value="Frontend">Frontend</option>
-                    <option value="Backend">Backend</option>
-                    <option value="Fullstack">Fullstack</option>
-                </select>
-                {{-- <input type="text" name="category" class="form-control" placeholder="Category"> --}}
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="module" class="form-control" placeholder="Module">
-            </div>
+        <div class="mb-3">
+            <label>Module</label>
+            <select class="form-control" name="module_id" required>
+                @foreach ($modules as $module)
+                    <option value="{{ $module->id }}">{{ $module->title }}</option>
+                @endforeach
+            </select>
         </div>
-        <div class="row">
-            <div class="col-12 text-end">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+        <div class="mb-3">
+            <label>Title</label>
+            <input type="text" class="form-control" name="title" required>
         </div>
+        <div class="mb-3">
+            <label>Content</label>
+            <textarea name="content" class="form-control" rows="4"></textarea>
+        </div>
+        <div class="mb-3">
+            <label>Video URL (optional)</label>
+            <input type="text" name="video_url" class="form-control">
+        </div>
+        <button class="btn btn-primary">Submit</button>
     </form>
+    
 @endsection
