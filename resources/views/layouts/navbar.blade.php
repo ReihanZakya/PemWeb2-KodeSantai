@@ -17,12 +17,34 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/category">Kategori</a>
                 </li>
+                @auth
+                {{-- Tampilkan link ke dashboard/profile sesuai role --}}
+                @if (Auth::user()->role === 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('dashboard') }}">Dashboard Admin</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('userprofile') }}">Profile</a>
+                    </li>
+                @endif
+        
+            @endauth
             </ul>
 
             <div>
-                <button class=" p-2 px-3 m-0" style="background-color:#FFFFFF"><a href="/login"
-                        class="text-decoration-none f-lightblue fw-bold">Masuk</a></button>
+                @guest
+                    {{-- Jika belum login (guest) --}}
+                    <button class="p-2 px-3 m-0" style="background-color:#FFFFFF">
+                        <a href="/login" class="text-decoration-none f-lightblue fw-bold">Masuk</a>
+                    </button>
+                @else
+                    <button class="p-2 px-3 m-0" style="background-color:#FFFFFF">
+                        <a href="{{ route('logout') }}" class="text-decoration-none f-lightblue fw-bold">Logout</a>
+                    </button>
+                @endguest
             </div>
+            
         </div>
     </div>
 </nav>

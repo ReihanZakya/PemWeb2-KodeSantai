@@ -29,7 +29,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'Admin'
+            'role' => 'user' 
         ]);
 
 
@@ -56,7 +56,12 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard');
+         // Redirect berdasarkan role
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('userprofile');
+        }
     }
 
     public function logout(Request $request)

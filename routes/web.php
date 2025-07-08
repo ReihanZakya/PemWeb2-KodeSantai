@@ -38,7 +38,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
+    Route::get('userprofile', function () {
+        return view('userprofile');
+    })->name('userprofile');
+});
+
+
+Route::prefix('admin')->middleware('auth','admin')->group(function () {
     Route::get('dashboard', function () {
         $module = Module::all();
         return view('admin.dashboard.dashboard', compact('module'));

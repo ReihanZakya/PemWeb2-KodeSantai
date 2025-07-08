@@ -19,6 +19,7 @@
     @yield('home')
     @yield('module')
     @yield('category')
+    @yield('userprofile')
 
     {{-- END CONTENT --}}
 
