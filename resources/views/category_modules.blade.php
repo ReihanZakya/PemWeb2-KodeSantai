@@ -9,7 +9,7 @@
         <div class="row">
             @foreach ($modules as $module)
                 <div class="col-lg-3 d-flex justify-content-center">
-                    <a href="{{ route('material.byModule', $module->id) }}" class="btn myBtn-white fw-bold w-100 text-decoration-none text-dark">
+                    <a href="{{ route('material.byModule', $module->id) }}" class="btn myBtn-white fw-bold w-100 text-decoration-none">
                         {{ $module->title }}
                     </a>
                 </div>

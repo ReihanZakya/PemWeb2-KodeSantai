@@ -14,7 +14,7 @@ Route::get('/', function () {
     dirancang secara khusus untuk memandu pengguna dari tingkat dasar hingga kemampuan
     yang lebih tinggi dalam pemrograman.";
     
-    $module = Module::paginate(16);
+    $module = Module::paginate(8);
 
     return view('home', compact('deskripsi', 'module'));
 });
