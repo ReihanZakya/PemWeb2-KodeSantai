@@ -18,6 +18,7 @@
 
     @yield('home')
     @yield('module')
+    @yield('material')
     @yield('category')
     @yield('userprofile')
 

@@ -59,7 +59,10 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        $module = Module::all();
+
+        return view('admin.materials.show', compact('module','material'));
     }
 
     /**

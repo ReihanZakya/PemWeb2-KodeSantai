@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ModuleController;
+use App\Models\Material;
 use App\Models\Module;
+use App\Models\Category;
 
 Route::get('/', function () {
     $deskripsi = "adalah platform belajar daring yang dirancang khusus untuk membantu pemula dalam 
@@ -24,9 +26,19 @@ Route::get('/module', function () {
     return view('module', compact('module'));
 });
 
+Route::get('/material/{module}', function (Module $module) {
+    $materials = $module->materials; // relasi dari model
+    return view('material', compact('materials', 'module'));
+})->name('material.byModule');
+
 Route::get('/category', function () {
     return view('category');
 });
+
+Route::get('/category/{category}', function (Category $category) {
+    $modules = $category->modules;
+    return view('category_modules', compact('modules', 'category'));
+})->name('modules.byCategory');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
@@ -48,7 +60,8 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
 Route::prefix('admin')->middleware('auth','admin')->group(function () {
     Route::get('dashboard', function () {
         $module = Module::all();
-        return view('admin.dashboard.dashboard', compact('module'));
+        $material = Material::all();
+        return view('admin.dashboard.dashboard', compact('module', 'material'));
     })->name('dashboard');
 
     Route::controller(ModuleController::class)->prefix('modules')->group(function () {

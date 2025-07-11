@@ -15,7 +15,7 @@
                         <h5 class="card-title">Frontend Developer</h5>
                         <p class="card-text">Mengembangkan bagian aplikasi web yang berinteraksi dengan pengguna, yaitu
                             hal-hal yang dirender di browser.</p>
-                        <button class="myBtn-blue fw-bold">Mulai</button>
+                            <a href="{{ route('modules.byCategory', 1) }}" class="btn myBtn-blue fw-bold">Mulai</a>
                     </div>
                 </div>
                 <div class="card mx-3 my-lg-5 shadow" style="width: 18rem;">
@@ -24,7 +24,7 @@
                         <h5 class="card-title">Backend Developer</h5>
                         <p class="card-text">Kembangkan bagian yang disembunyikan dari pengguna, mis. hal-hal seperti API.
                             database, mesin pencari, dll.</p>
-                        <button class="myBtn-blue fw-bold">Mulai</button>
+                            <a href="{{ route('modules.byCategory', 2) }}" class="btn myBtn-blue fw-bold">Mulai</a>
                     </div>
                 </div>
                 <div class="card mx-3 my-lg-5 shadow" style="width: 18rem;">
@@ -40,7 +40,7 @@
                         <h5 class="card-title">Fullstack Developer</h5>
                         <p class="card-text">Kembangkan sisi frontend dan backend aplikasi web, yaitu seluruh tumpukan
                             pengembangan.</p>
-                        <button class="myBtn-blue fw-bold">Mulai</button>
+                            <a href="{{ route('modules.byCategory', 3) }}" class="btn myBtn-blue fw-bold">Mulai</a>
                     </div>
                 </div>
 

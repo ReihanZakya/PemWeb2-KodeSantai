@@ -14,7 +14,7 @@
                         <div class="fs-4 fw-bold">
                             Pembelajaran Dasar Programmer
                         </div>
-                        <button class="myBtn-blue fw-bold"><a href="/kategori"
+                        <button class="myBtn-blue fw-bold"><a href="/category"
                                 class="text-decoration-none text-white">Mulai Sekarang</a></button>
                     </div>
                 </div>
@@ -154,9 +154,11 @@
         </div>
         <div class="row">
             @foreach ($module as $item)
-            <div class="col-lg-3 d-flex justify-content-center">
-                <button class="myBtn-white fw-bold w-100">{{ $item->module }}</button>
-            </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('material.byModule', $item->id) }}" class="btn myBtn-white fw-bold w-100 text-decoration-none text-dark">
+                        {{ $item->title }}
+                    </a>
+                </div>
             @endforeach
             <div class="col-lg-12 d-flex justify-content-center mt-5">
                 <button class="myBtn-white fw-bold"><a href="/module"
