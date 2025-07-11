@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
          'module_id' => 1,
          'title' => 'Pengenalan web',
          'content' => 'Apa itu frontend? Cara kerja browser dan server',
-         'video_url' => 'https://youtu.be/xvFZjo5PgG0?si=vID89rFacBRF8R5E'
+         'video_url' => 'https://youtu.be/CsSyelw7QSM?si=FonVO5yfFdzunxS7'
      ]);
  
      Material::create([

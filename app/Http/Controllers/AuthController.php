@@ -78,4 +78,12 @@ class AuthController extends Controller
         return view('admin.dashboard.profile');
     }
 
+    public function userProfile()
+    {
+        $bookmarks = \App\Models\Bookmark::with('module')
+            ->where('user_id', auth()->id())
+            ->get();
+
+        return view('userprofile', compact('bookmarks'));
+    }
 }

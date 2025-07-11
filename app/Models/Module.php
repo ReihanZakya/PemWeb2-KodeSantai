@@ -20,4 +20,10 @@ class Module extends Model
         return $this->hasMany(Material::class);
     }
 
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+
+
 }

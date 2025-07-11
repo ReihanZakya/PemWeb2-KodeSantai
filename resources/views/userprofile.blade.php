@@ -35,7 +35,26 @@
                         <p class="fs-4 fw-bold">Your Progress "coming soon"</p>
                         <p class="fs-4"><span class="fw-bold">Completed Modules: "coming soon"</span></p>
                         <p class="fs-4"><span class="fw-bold">Total Modules: "coming soon"</span></p>
-                        <p class="fs-4"><span class="fw-bold">Bookmark: "coming soon"</span></p>
+                        <p class="fs-4 fw-bold">Bookmark Kamu:</p>
+                        @if ($bookmarks->isEmpty())
+                            <p class="fs-5">Belum ada bookmark.</p>
+                        @else
+                            <ul class="list-group">
+                                @foreach ($bookmarks as $bookmark)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="{{ route('material.byModule', $bookmark->module->id) }}" class="text-decoration-none mybg-white">
+                                            {{ $bookmark->module->title }}
+                                        </a>                                                                             
+                                        <form action="{{ route('bookmark.remove', $bookmark->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm myBtn-red">Hapus</button>
+                                        </form>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+
                     </div>
                 </div>
             </div>

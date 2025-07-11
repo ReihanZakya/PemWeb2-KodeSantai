@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\BookmarkController;
 use App\Models\Material;
 use App\Models\Module;
 use App\Models\Category;
@@ -18,7 +19,13 @@ Route::get('/', function () {
 
     return view('home', compact('deskripsi', 'module'));
 });
+// CATEGORIES
+Route::get('/category/{category}', function (Category $category) {
+    $modules = $category->modules;
+    return view('category_modules', compact('modules', 'category'));
+})->name('modules.byCategory');
 
+// MODULES
 Route::get('/module', function () {
 
     $module = Module::all();
@@ -26,6 +33,7 @@ Route::get('/module', function () {
     return view('module', compact('module'));
 });
 
+// MATERIALS
 Route::get('/material/{module}', function (Module $module) {
     $materials = $module->materials; // relasi dari model
     return view('material', compact('materials', 'module'));
@@ -35,10 +43,7 @@ Route::get('/category', function () {
     return view('category');
 });
 
-Route::get('/category/{category}', function (Category $category) {
-    $modules = $category->modules;
-    return view('category_modules', compact('modules', 'category'));
-})->name('modules.byCategory');
+
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
@@ -51,9 +56,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
-    Route::get('userprofile', function () {
-        return view('userprofile');
-    })->name('userprofile');
+    Route::get('userprofile', [AuthController::class, 'userProfile'])->name('userprofile');
 });
 
 
@@ -84,6 +87,12 @@ Route::prefix('admin')->middleware('auth','admin')->group(function () {
         Route::delete('destroy/{id}', 'destroy')->name('materials.destroy');
     });
 
-    Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
+    Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->middleware('auth')->name('profile');
 
 });
+
+Route::middleware('auth')->group(function () {
+    Route::post('/bookmark/{module_id}', [BookmarkController::class, 'store'])->name('bookmark.add');
+    Route::delete('/bookmark/{id}', [BookmarkController::class, 'destroy'])->name('bookmark.remove');
+});
+

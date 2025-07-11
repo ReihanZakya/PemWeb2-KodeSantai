@@ -39,6 +39,16 @@ html {
     box-shadow: 5px 5px 5px lightblue;
 }
 
+.myBtn-red {
+    border: none;
+    background-color: #e45757;
+    color: #FFFFFF;
+    padding: 12px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 5px lightblue;
+}
+
 .myBtn-white {
     border: none;
     background-color: #FFFFFF;
